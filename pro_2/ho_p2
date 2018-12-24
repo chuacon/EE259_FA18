@@ -1,0 +1,515 @@
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+\_                                                                    \_
+\_    THE CITY COLLEGE OF NEW YORK, ELECTRICAL ENGINEERING DEPARTMENT \_
+\_               EE259, DAY-EVENING SECTIONS                          \_
+\_                                                                    \_
+\_                              PROJECT 2                             \_
+\_                                                                    \_
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+PROJECT 2 DESCRIPTION:
+
+Write a C++ class definition called SORT_INFO which will perform 
+the following tasks. SORT_INFO class will inherit from STUDENT_GRADE
+class, which in turn inherits from STUDENT_ID class.
+
+The prototype for the  class SORT_INFO  is defined as follows:
+
+  class SORT_INFO:public STUDENT_GRADE{
+   public:      // public methods for this class
+
+        SORT_INFO(int, int); // example: b.SORT_INFO(x, y);
+				// constructor;
+				// x is noof students, y is noof projects
+
+        void SORT_ID(char *); // example: b.SORT_GRADE("ASCENDING");
+				// method to sort student ids in ascending or 
+				// descending order; returns no values;
+
+        void SORT_GRADE(char *, int); // example: b.SORT_GRADE("ASCENDING", 2);
+				// method to sort grades for a given exam in 
+				// ascending or descending order; returns no values;
+
+        void SORT_NAME(char *); // example: b.SORT_NAME("ASCENDING");
+			    	// method to sort students by their last names
+			    	// in alphabetical or reverse alphabetical order; 
+				// returns no values;
+
+   // protected vars below can only be accessed within this class and inherited classes
+   // they are not directly accessible from main
+   protected: 
+	char LastName[20][12];   // array to hold student's last name
+	char FirstName[20][12];  // array to hold student,s first name
+   };
+
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+The objects of SORT_INFO class will read the input values from a file called
+studentName.txt given with the following format:
+
+	LastName_1 FirstName_1 
+	LastName_2 FirstName_2 
+	...
+	LastName_n FirstName_n 
+
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+An example use of the constructor is as follows:
+
+        SORT_INFO X(w, z); 
+
+which instantiates an object X of class SORT_INFO.  Integers w and z
+represent the number of students and exams, respectively. This constructor 
+will call the constructor of the base class SORT_GRADE and read the information 
+from studentName.txt into the protected arrays of LastName and FirstName. 
+
+The output to out.2.txt file is:
+
+	++++ P2 START ++++
+	++++ P2 OUTPUT FROM SORT_INFO CONSTRUCTOR:
+	++++ P2 AN OBJECT OF SORT_INFO IS CREATED.
+	++++ P2 END ++++
+
+Note that the constructors for STUDENT_GRADE and STUDENT_ID will also
+generate their own outputs automatically as they are called by the
+constructors.
+
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+Definition of SORT_ID method is as follows:
+
+	G.SORT_ID(ORDER);
+
+where G is an object of class SORT_INFO, and ORDER is a character string.
+
+If ORDER is "ASCENDING", this method sorts the student ids in ascending order.
+The output to out_2.txt file is:
+
+	++++ P2 START ++++
+	++++ P2 OUTPUT FROM SORT_ID METHOD:
+	++++ P2 BEFORE SORTING IN ASCENDING ORDER:
+	++ P1 START ++
+	++ P1 OUTPUT FROM LIST_IDS METHOD:
+	+ P0 START +
+	+ P0 OUTPUT FROM LIST_ID METHOD:
+	+ P0 STUDENT IDS FOR z STUDENTS:
+	+ P0 id_0
+	...
+	+ P0 id_z-1
+	+ P0 END +
+	++ P1 END ++
+	++++ P2 AFTER SORTING IN ASCENDING ORDER:
+	++ P1 START ++
+	++ P1 OUTPUT FROM LIST_IDS METHOD:
+	+ P0 START +
+	+ P0 OUTPUT FROM LIST_ID METHOD:
+	+ P0 STUDENT IDS FOR z STUDENTS:
+	+ P0 id_0
+	...
+	+ P0 id_z-1
+	+ P0 END +
+	++ P1 END ++
+	++++ P2 END ++++
+
+where z is the number of students. Here before and after perform 
+sorting, you call LIST_IDS method defined in STUDENT_GRADE class.
+
+If ORDER is "DESCENDING", this method sorts the student ids in 
+descending order. Output is very similar except the word
+"ASCENDING" is replaced by "DESCENDING".
+
+If ORDER is set to anything else, the output to out.2.txt is:
+
+	++++ P2 START ++++
+	++++ P2 OUTPUT FROM SORT_ID METHOD:
+	++++ P2 INPUT ERROR
+	++++ P2 END ++++
+
+Please see Example 2 below.
+
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+The definition of SORT_GRADE method is as follows:
+
+	G.SORT_GRADE(ORDER, x);
+
+where G is a object of class SORT_INFO, ORDER is a character string, 
+and integer x is the exam number. 
+
+If ORDER is set to "ASCENDING", the exam x grade will be sorted in ascending 
+order and the output to out.2.txt file will be:
+
+	++++ P2 START ++++
+	++++ P2 OUTPUT FROM SORT_GRADE METHOD:
+	++++ P2 BEFORE SORTING IN ASCENDING ORDER:
+	++ P1 START ++
+	++ P1 OUTPUT FROM LIST_IDS METHOD:
+	+ P0 START +
+	+ P0 OUTPUT FROM LIST_ID METHOD:
+	+ P0 STUDENT IDS FOR z STUDENTS:
+	+ P0 id_0
+	...
+	+ P0 id_z-1
+	+ P0 END +
+	++ P1 END ++
+	++++ P2 AFTER SORTING IN ASCENDING ORDER:
+	++ P1 START ++
+	++ P1 OUTPUT FROM LIST_IDS METHOD:
+	+ P0 START +
+	+ P0 OUTPUT FROM LIST_ID METHOD:
+	+ P0 STUDENT IDS FOR z STUDENTS:
+	+ P0 id_0
+	...
+	+ P0 id_z-1
+	+ P0 END +
+	++ P1 END ++
+	++++ P2 END ++++
+
+where z is the number of students. Here before and after perform 
+sorting, you call LIST_IDS method defined in STUDENT_GRADE class.
+
+If ORDER is "DESCENDING", this method will perform sorting in 
+descending order. Output is very similar except the word
+"ASCENDING" is replaced by "DESCENDING".
+
+If ORDER is set to anything else, and/or x is illegal, the output to 
+out.2.txt is:
+
+	++++ P2 START ++++
+	++++ P2 OUTPUT FROM SORT_ID METHOD:
+	++++ P2 INPUT ERROR
+	++++ P2 END ++++
+
+Please see Example 3 below.
+
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+The definition of SORT_NAME method is as follows:
+
+	G.SORT_NAME(ORDER);
+
+where G is a object of class SORT_INFO and ORDER is a character string. 
+
+If ORDER is set to "ASCENDING", the last names will be sorted in alphabetical 
+order and the output to out.2.txt file will be:
+
+	++++ P2 START ++++
+	++++ P2 OUTPUT FROM SORT_NAME METHOD:
+	++++ P2 BEFORE SORTING LAST NAMES IN ALPHABETICAL ORDER:
+	++ P1 START ++
+	++ P1 OUTPUT FROM LIST_IDS METHOD:
+	+ P0 START +
+	+ P0 OUTPUT FROM LIST_ID METHOD:
+	+ P0 STUDENT IDS FOR z STUDENTS:
+	+ P0 id_0
+	...
+	+ P0 id_z-1
+	+ P0 END +
+	++ P1 END ++
+	++++ P2 AFTER SORTING LAST NAMES IN ALPHABETICAL ORDER:
+	++ P1 START ++
+	++ P1 OUTPUT FROM LIST_IDS METHOD:
+	+ P0 START +
+	+ P0 OUTPUT FROM LIST_ID METHOD:
+	+ P0 STUDENT IDS FOR z STUDENTS:
+	+ P0 id_0
+	...
+	+ P0 id_z-1
+	+ P0 END +
+	++ P1 END ++
+	++++ P2 END ++++
+
+where z is the number of students. Here before and after perform 
+sorting, you call LIST_IDS method defined in STUDENT_GRADE class.
+
+If ORDER is "DESCENDING", this method will perform sorting in 
+descending order. Output is very similar except the word
+"ALPHABETICAL" is replaced by "REVERSE ALPHABETICAL".
+
+If ORDER is set to anything else, and/or x is illegal, the output to 
+out.2.txt is:
+
+	++++ P2 START ++++
+	++++ P2 OUTPUT FROM SORT_NAME METHOD:
+	++++ P2 INPUT ERROR
+	++++ P2 END ++++
+
+Please see Example 4 below.
+
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+:::::::::::::: EXAMPLE 1 ::::::::::::::::::::: 
+---------CONTENTS OF main2_1.cc FILE:-----------
+#include "p2.h"
+// example program: main2_1.cc
+int main ()
+{
+        SORT_INFO G(5, 4); // instantiate an object C of class SORT_INFO
+			// with 5 student ids each with 4 exams
+
+	G.LIST_IDS(); // call to method in one of the base classes
+	
+	return 0;
+}
+---------CONTENTS OF studentName.txt FILE:---------------
+BUSH    ROB    
+PAPA	JOE   
+LEE     MARIA  
+WONG	ANITA  
+CARTER  SHAOYI 
+---------CONTENTS OF studentGrade.txt FILE:---------------
+81 91 61 71 
+83 93 63 73
+82 92 62 72
+85 95 65 75
+84 94 64 74
+---------CONTENTS OF studentId.txt FILE:---------------
+1111
+3333
+2222
+5555
+4444
+---------EXPECTED CONTENTS OF out.2.txt FILE:-----
++ P0 START +
++ P0 OUTPUT FROM STUDENT_ID CONSTRUCTOR:
++ P0 INSTANTIATED AN OBJECT OF CLASS STUDENT_ID WITH 5 STUDENT IDS.
++ P0 END +
+++ P1 START ++
+++ P1 OUTPUT FROM STUDENT_GRADE CONSTRUCTOR:
+++ P1 AN OBJECT OF STUDENT_GRADE IS CREATED WITH 5 STUDENTS AND 4 EXAMS EACH.
+++ P1 END ++
+++++ P2 START ++++
+++++ P2 OUTPUT FROM STUDENT_GRADE CONSTRUCTOR:
+++++ P2 AN OBJECT OF SORT_INFO IS CREATED.
+++++ P2 END ++++
+++ P1 START ++
+++ P1 OUTPUT FROM LIST_IDS METHOD:
++ P0 START +
++ P0 OUTPUT FROM LIST_ID METHOD:
++ P0 STUDENT IDS FOR 5 STUDENTS:
++ P0 1111
++ P0 3333
++ P0 2222
++ P0 5555
++ P0 4444
++ P0 END +
+++ P1 END ++
+:::::::::::::: EXAMPLE 2 ::::::::::::::::::::: 
+---------CONTENTS OF main2_2.cc FILE:-----------
+#include "p2.h"
+// example program: main2_2.cc
+int main ()
+{
+        SORT_INFO G(5, 4); // instantiate an object C of class SORT_INFO
+			// with 5 student ids each with 4 exams
+
+	G.SORT_ID("ASCENDING"); // sort IDs in ascending order
+	
+	return 0;
+}
+---------CONTENTS OF studentName.txt FILE:---------------
+BUSH    ROB    
+PAPA	JOE   
+LEE     MARIA  
+WONG	ANITA  
+CARTER  SHAOYI 
+---------CONTENTS OF studentGrade.txt FILE:---------------
+81 91 61 71 
+83 93 63 73
+82 92 62 72
+85 95 65 75
+84 94 64 74
+---------CONTENTS OF studentId.txt FILE:---------------
+1111
+3333
+2222
+5555
+4444
+---------EXPECTED CONTENTS OF out.2.txt FILE:-----
++ P0 START +
++ P0 OUTPUT FROM STUDENT_ID CONSTRUCTOR:
++ P0 INSTANTIATED AN OBJECT OF CLASS STUDENT_ID WITH 5 STUDENT IDS.
++ P0 END +
+++ P1 START ++
+++ P1 OUTPUT FROM STUDENT_GRADE CONSTRUCTOR:
+++ P1 AN OBJECT OF STUDENT_GRADE IS CREATED WITH 5 STUDENTS AND 4 EXAMS EACH.
+++ P1 END ++
+++++ P2 START ++++
+++++ P2 OUTPUT FROM STUDENT_GRADE CONSTRUCTOR:
+++++ P2 AN OBJECT OF SORT_INFO IS CREATED.
+++++ P2 END ++++
+++++ P2 START ++++
+++++ P2 OUTPUT FROM SORT_ID METHOD:
+++++ P2 BEFORE SORTING IN ASCENDING ORDER:
+++ P1 START ++
+++ P1 OUTPUT FROM LIST_IDS METHOD:
++ P0 START +
++ P0 OUTPUT FROM LIST_ID METHOD:
++ P0 STUDENT IDS FOR 5 STUDENTS:
++ P0 1111
++ P0 3333
++ P0 2222
++ P0 5555
++ P0 4444
++ P0 END +
+++ P1 END ++
+++++ P2 AFTER SORTING IN ASCENDING ORDER:
+++ P1 START ++
+++ P1 OUTPUT FROM LIST_IDS METHOD:
++ P0 START +
++ P0 OUTPUT FROM LIST_ID METHOD:
++ P0 STUDENT IDS FOR 5 STUDENTS:
++ P0 1111
++ P0 2222
++ P0 3333
++ P0 4444
++ P0 5555
++ P0 END +
+++ P1 END ++
+++++ P2 END ++++
+:::::::::::::: EXAMPLE 3 ::::::::::::::::::::: 
+---------CONTENTS OF main2_3.cc FILE:-----------
+#include "p2.h"
+// example program: main2_3.cc
+int main ()
+{
+        SORT_INFO G(5, 4); // instantiate an object C of class SORT_INFO
+			// with 5 student ids each with 4 exams
+
+	G.SORT_GRADE("DESCENDING", 1); // sort exam1 grades in descending order
+	
+	return 0;
+}
+---------CONTENTS OF studentName.txt FILE:---------------
+BUSH    ROB    
+PAPA	JOE   
+LEE     MARIA  
+WONG	ANITA  
+CARTER  SHAOYI 
+---------CONTENTS OF studentGrade.txt FILE:---------------
+81 91 61 71 
+83 93 63 73
+82 92 62 72
+85 95 65 75
+84 94 64 74
+---------CONTENTS OF studentId.txt FILE:---------------
+1111
+3333
+2222
+5555
+4444
+---------EXPECTED CONTENTS OF out.2.txt FILE:-----
++ P0 START +
++ P0 OUTPUT FROM STUDENT_ID CONSTRUCTOR:
++ P0 INSTANTIATED AN OBJECT OF CLASS STUDENT_ID WITH 5 STUDENT IDS.
++ P0 END +
+++ P1 START ++
+++ P1 OUTPUT FROM STUDENT_GRADE CONSTRUCTOR:
+++ P1 AN OBJECT OF STUDENT_GRADE IS CREATED WITH 5 STUDENTS AND 4 EXAMS EACH.
+++ P1 END ++
+++++ P2 START ++++
+++++ P2 OUTPUT FROM STUDENT_GRADE CONSTRUCTOR:
+++++ P2 AN OBJECT OF SORT_INFO IS CREATED.
+++++ P2 END ++++
+++++ P2 START ++++
+++++ P2 OUTPUT FROM SORT_GRADE METHOD:
+++++ P2 BEFORE SORTING IN DESCENDING ORDER:
+++ P1 START ++
+++ P1 OUTPUT FROM LIST_IDS METHOD:
++ P0 START +
++ P0 OUTPUT FROM LIST_ID METHOD:
++ P0 STUDENT IDS FOR 5 STUDENTS:
++ P0 1111
++ P0 3333
++ P0 2222
++ P0 5555
++ P0 4444
++ P0 END +
+++ P1 END ++
+++++ P2 AFTER SORTING IN DESCENDING ORDER:
+++ P1 START ++
+++ P1 OUTPUT FROM LIST_IDS METHOD:
++ P0 START +
++ P0 OUTPUT FROM LIST_ID METHOD:
++ P0 STUDENT IDS FOR 5 STUDENTS:
++ P0 5555
++ P0 4444
++ P0 3333
++ P0 2222
++ P0 1111
++ P0 END +
+++ P1 END ++
+++++ P2 END ++++
+:::::::::::::: EXAMPLE 4 ::::::::::::::::::::: 
+---------CONTENTS OF main2_4.cc FILE:-----------
+#include "p2.h"
+// example program: main2_4.cc
+int main ()
+{
+        SORT_INFO G(5, 4); // instantiate an object C of class SORT_INFO
+			// with 5 student ids each with 4 exams
+
+	G.SORT_NAME("ASCENDING"); // sort IDs in ascending order
+	
+	return 0;
+}
+---------CONTENTS OF studentName.txt FILE:---------------
+BUSH    ROB    
+PAPA	JOE   
+LEE     MARIA  
+WONG	ANITA  
+CARTER  SHAOYI 
+---------CONTENTS OF studentGrade.txt FILE:---------------
+81 91 61 71 
+83 93 63 73
+82 92 62 72
+85 95 65 75
+84 94 64 74
+---------CONTENTS OF studentId.txt FILE:---------------
+1111
+3333
+2222
+5555
+4444
+---------EXPECTED CONTENTS OF out.2.txt FILE:-----
++ P0 START +
++ P0 OUTPUT FROM STUDENT_ID CONSTRUCTOR:
++ P0 INSTANTIATED AN OBJECT OF CLASS STUDENT_ID WITH 5 STUDENT IDS.
++ P0 END +
+++ P1 START ++
+++ P1 OUTPUT FROM STUDENT_GRADE CONSTRUCTOR:
+++ P1 AN OBJECT OF STUDENT_GRADE IS CREATED WITH 5 STUDENTS AND 4 EXAMS EACH.
+++ P1 END ++
+++++ P2 START ++++
+++++ P2 OUTPUT FROM STUDENT_GRADE CONSTRUCTOR:
+++++ P2 AN OBJECT OF SORT_INFO IS CREATED.
+++++ P2 END ++++
+++++ P2 START ++++
+++++ P2 OUTPUT FROM SORT_NAME METHOD:
+++++ P2 BEFORE SORTING LAST NAMES IN ALPHABETICAL ORDER:
+++ P1 START ++
+++ P1 OUTPUT FROM LIST_IDS METHOD:
++ P0 START +
++ P0 OUTPUT FROM LIST_ID METHOD:
++ P0 STUDENT IDS FOR 5 STUDENTS:
++ P0 1111
++ P0 3333
++ P0 2222
++ P0 5555
++ P0 4444
++ P0 END +
+++ P1 END ++
+++++ P2 AFTER SORTING LAST NAMES IN ALPHABETICAL ORDER:
+++ P1 START ++
+++ P1 OUTPUT FROM LIST_IDS METHOD:
++ P0 START +
++ P0 OUTPUT FROM LIST_ID METHOD:
++ P0 STUDENT IDS FOR 5 STUDENTS:
++ P0 3333
++ P0 5555
++ P0 2222
++ P0 1111
++ P0 4444
++ P0 END +
+++ P1 END ++
+++++ P2 END ++++
